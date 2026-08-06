@@ -39,6 +39,8 @@ Read these documents as one evidence set:
   gates, target comparisons, and stop/go criteria.
 * [Compatibility roadmap](compatibility-roadmap.md) — observable compatibility
   levels, ledgers, metrics, and acceptance requirements.
+* [Kotlin Multiplatform prototype](../../KotlinPlatform/README.md) — isolated
+  module map, supported headless subset, explicit rejection boundaries, and CLI.
 * Decision records:
   * [ADR-0001: Portable layer owns the normalized IR](decisions/0001-ir-ownership.md)
   * [ADR-0002: Extension identity is explicit and versioned](decisions/0002-extension-identity.md)
@@ -70,12 +72,13 @@ matching API names alone.
 * Extension declaration routes and the `ExampleJsExtension` end-to-end trace are
   documented with repository paths in
   [`extensions-and-types.md`](extensions-and-types.md).
-* The initiative has proposed architecture, target experiments, and compatibility
-  criteria, but no checked-in Kotlin prototype or compatibility corpus is
-  claimed by this entry point. The relevant planned artifacts are described in
-  [`portable-architecture.md`](portable-architecture.md),
-  [`target-strategy.md`](target-strategy.md), and
-  [`compatibility-roadmap.md`](compatibility-roadmap.md).
+* The isolated [`KotlinPlatform/`](../../KotlinPlatform/README.md) prototype now
+  demonstrates source decoding, lowering to normalized IR, deterministic
+  bounded-frame execution, stable JSON traces, and a statically registered
+  Kotlin extension for a deliberately narrower subset of the milestone. It does
+  not claim compatibility: the pinned differential corpus and GDJS reference
+  traces described in [`target-strategy.md`](target-strategy.md) are not yet
+  checked in.
 
 **Decision.** The four accepted ADRs establish current working boundaries: a
 portable normalized IR, explicit extension identity, a capability-based host
