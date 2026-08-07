@@ -1,23 +1,30 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-    }
+	repositories {
+		gradlePluginPortal()
+		mavenCentral()
+	}
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories { mavenCentral() }
+	// Kotlin/JS registers the Node distribution repository when configuring browser targets.
+	repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+	repositories { mavenCentral() }
 }
 
 rootProject.name = "gdevelop-kotlin-prototype"
 
 include(
-    ":diagnostics",
-    ":project-model",
-    ":extension-catalog",
-    ":normalized-ir",
-    ":runtime-state",
-    ":example-extension",
-    ":jvm-cli",
+	":diagnostics",
+	":project-model",
+	":extension-catalog",
+	":normalized-ir",
+	":runtime-state",
+	":map-runtime",
+	":maptiles-extension",
+	":maplibre-js-host",
+	":maptiles-demo",
+	":example-extension",
+	":jvm-cli",
 )
