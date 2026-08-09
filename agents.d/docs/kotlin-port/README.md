@@ -59,6 +59,7 @@ Read these documents as one evidence set:
   * [ADR-0002: Extension identity is explicit and versioned](decisions/0002-extension-identity.md)
   * [ADR-0003: Runtime facilities cross a capability-based host boundary](decisions/0003-runtime-host-boundary.md)
   * [ADR-0004: Support interpreter and generated execution from one IR](decisions/0004-generated-code-vs-interpreter.md)
+  * [ADR-0005: MapTiles sample uses a separate application front end](decisions/0005-maptiles-source-front-end.md)
 
 ## Vision
 

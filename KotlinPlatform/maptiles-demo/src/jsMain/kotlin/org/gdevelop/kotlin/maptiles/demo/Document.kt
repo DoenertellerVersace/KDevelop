@@ -2,8 +2,9 @@ package org.gdevelop.kotlin.maptiles.demo
 
 import kotlinx.serialization.Serializable
 
+/** Experimental sample-only DTO; not a portable project/source-model API. */
 @Serializable
-data class DemoDocument(
+internal data class DemoDocument(
 	val version: Int = 1,
 	val map: MapConfiguration = MapConfiguration(),
 	val overlays: List<MarkerDocument> = emptyList(),
@@ -11,7 +12,7 @@ data class DemoDocument(
 )
 
 @Serializable
-data class MapConfiguration(
+internal data class MapConfiguration(
 	val styleUrl: String = "",
 	val center: List<Double> = listOf(0.0, 20.0),
 	val zoom: Double = 1.5,
@@ -19,7 +20,7 @@ data class MapConfiguration(
 )
 
 @Serializable
-data class MarkerDocument(
+internal data class MarkerDocument(
 	val id: String,
 	val longitude: Double,
 	val latitude: Double,
@@ -31,7 +32,7 @@ data class MarkerDocument(
 )
 
 @Serializable
-data class EventOperation(
+internal data class EventOperation(
 	val event: String,
 	val action: String,
 	val markerId: String? = null,
