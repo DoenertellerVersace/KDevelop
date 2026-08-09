@@ -41,6 +41,9 @@ Read these documents as one evidence set:
   IR, analysis, extension catalog, runtime state, host capabilities, and targets.
 * [Target strategy](target-strategy.md) — staged experiments, fixtures, evidence
   gates, target comparisons, and stop/go criteria.
+* [Phase 4 headless browser experiment](phase4-headless-browser-experiment.md) —
+  prerequisite status, comparison surfaces, exclusions, and the deferred
+  Kotlin/JS Mode B protocol.
 * [Map tiles prototype](maptiles-prototype.md) — a post-headless Kotlin/JS
   experiment using MapLibre as an explicit browser rendering host.
 * [Compatibility roadmap](compatibility-roadmap.md) — observable compatibility
@@ -73,6 +76,13 @@ feature diagnostics. It is not demonstrated by compiling generated Kotlin or by
 matching API names alone.
 
 ## Current status
+
+**Confirmed — 2026-08-07.** The checked-in Phase 1 evidence does not pass its
+JVM headless gate, so the conditional Phase 4 Kotlin/JS semantic experiment has
+not started. The gate evidence and the precise deferred protocol are recorded
+in [`phase4-headless-browser-experiment.md`](phase4-headless-browser-experiment.md).
+Kotlin/JS remains Phase 4 evidence and is not a retroactive Milestone 1
+acceptance criterion.
 
 **Confirmed** — investigation date **2026-08-06**, GDevelop revision
 `23f965f5290c176de3666cca9f5ae82ffa70e24a`, Kotlin prototype revision
