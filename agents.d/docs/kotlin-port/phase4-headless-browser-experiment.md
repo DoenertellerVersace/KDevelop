@@ -64,3 +64,67 @@ are excluded rather than normalized after capture.
 are not, and must not be made, a retroactive Milestone 1 acceptance criterion.
 Milestone 1 continues to be judged by the Phase 1 JVM gate documented in
 [`target-strategy.md`](target-strategy.md).
+
+## Post-parity MapTiles demo composition gate
+
+**Confirmed — not started (two prerequisite gates failed or have no passing
+evidence).** At the revision inspected above, the JVM milestone gate is failing
+and there is consequently no passing Kotlin/JS headless parity report. The
+`maptiles-demo` refactor is downstream of both results. It must not be used to
+produce either result or to make MapLibre behavior part of their oracle.
+
+**Hypothesis.** After both gates pass, the authoring demo can compose the shared
+interpreter with the generic runtime-host boundary and restrict its browser-only
+code to document editing and a MapLibre map-operation adapter.
+
+The refactor must demonstrate this browser flow in order:
+
+1. Decode an explicitly versioned demo source format into a lossless source
+   model. Preserve unknown fields or reject the document with a source-located
+   diagnostic; do not silently discard authoring data.
+2. Resolve one immutable catalog containing the versioned MapTiles descriptor.
+3. Lower that source exclusively through `ProjectLowerer`; the demo must not
+   manufacture operation strings as an alternate IR.
+4. Execute the resulting NIR with the same interpreter entry point proven by
+   the JVM and Kotlin/JS headless experiments. This validates only the
+   interpreter-composition side of ADR-0004; it is not generated-backend
+   evidence.
+5. Dispatch every host operation through the generic `RuntimeHost` contract.
+   Only operations requiring the browser-map-rendering capability may reach
+   `MapTilesHostOperationExecutor` and `MapLibreMapHost`.
+6. Advance overlay animation from runtime-owned game time delivered at ordered
+   frame boundaries. `performance.now`, `requestAnimationFrame` timestamps, and
+   MapLibre animation clocks must not determine portable semantic state.
+7. Translate MapLibre callbacks into immutable host inputs and enqueue them on
+   the ordered runtime queue. Callbacks must never invoke event-sheet semantics
+   reentrantly.
+8. On scene replacement, document import, map replacement, and terminal
+   shutdown, dispose pending operations, queued inputs, listeners, overlays,
+   scene/runtime state, and MapLibre handles in a recorded deterministic order.
+
+The authoring controls and mutable document editor stay in `maptiles-demo`
+`jsMain`. They may request an import or runtime operation, but DOM types and
+editing state cannot enter the common source, lowering, IR, runtime-state, or
+extension modules.
+
+### Required removal evidence
+
+Remove the demo-local `MapLibre` externals and its direct `when
+(operation.action)` string interpreter only after focused equivalence fixtures
+pass through the shared composition. The removal report must identify the
+single surviving externals owner (`maplibre-js-host`), show that unknown
+operations become structured diagnostics rather than ignored UI status, and
+show that no demo path directly calls `flyTo`, marker mutation, or animation
+outside the shared adapter.
+
+### Stop/go output
+
+* **Go:** both prerequisite reports pass; import/lowering/interpreter/host traces
+  establish the eight-step flow; lifecycle tests establish deterministic
+  teardown; and static dependency inspection finds no duplicate externals,
+  direct string interpreter, DOM leakage into common modules, or generated
+  backend claim.
+* **Stop:** either prerequisite regresses, source loss is required, callbacks
+  must execute semantics reentrantly, animation depends on browser time, or the
+  generic host cannot express cleanup ownership. Revise shared APIs and rerun
+  the headless parity gates before continuing the adapter refactor.

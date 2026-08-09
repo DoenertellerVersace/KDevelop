@@ -42,8 +42,8 @@ Read these documents as one evidence set:
 * [Target strategy](target-strategy.md) — staged experiments, fixtures, evidence
   gates, target comparisons, and stop/go criteria.
 * [Phase 4 headless browser experiment](phase4-headless-browser-experiment.md) —
-  prerequisite status, comparison surfaces, exclusions, and the deferred
-  Kotlin/JS Mode B protocol.
+  prerequisite status, comparison surfaces, exclusions, the deferred Kotlin/JS
+  Mode B protocol, and the further-gated shared-pipeline MapTiles composition.
 * [Map tiles prototype](maptiles-prototype.md) — a post-headless Kotlin/JS
   experiment using MapLibre as an explicit browser rendering host.
 * [Compatibility roadmap](compatibility-roadmap.md) — observable compatibility

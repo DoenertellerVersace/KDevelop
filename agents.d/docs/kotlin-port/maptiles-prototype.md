@@ -9,8 +9,11 @@
 > state.
 
 > [!CAUTION]
-> **Feature work is paused until the Phase 1 go criterion is satisfied.** Do not
-> add MapTiles authoring features, tile-provider integrations, style editing,
+> **Feature work is paused until the Phase 1 go criterion is satisfied.** The
+> demo's shared-pipeline refactor is further gated on a passing Kotlin/JS
+> headless parity report; its required composition and removal evidence is in
+> the [Phase 4 headless browser experiment](phase4-headless-browser-experiment.md#post-parity-maptiles-demo-composition-gate).
+> Do not add MapTiles authoring features, tile-provider integrations, style editing,
 > offline support, terrain, native rendering, or production packaging. The
 > reviewed [MapTiles common API audit](maptiles-api-audit.md) freezes existing
 > ownership boundaries and promotes no spike API.
